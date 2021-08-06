@@ -5,21 +5,28 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
+     <head th:include="_layout :: head_content">
+        <title id="title">Department - MCC 53 Official Web - Dashboard</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
-    <body class="p-3 mb-2 bg-light text-dark">
-        <div class="container p-3 mb-2 bg-light text-dark">
-            <a th:href="@{/department/add}" class="btn btn-primary mb-3 mt-3">
-            <i class="fas fa-plus"></i>
-         Add Department
-        </a>
-        <table class="table caption-top table-striped table-hover">
-            <caption>List of Departments</caption>
+    <body>
+    <div th:include="_layout :: wrapper" class="_wrapper">
+            <div class="container p-3 mb-2 bg-light text-dark" id="main">
+            <div class="card">
+            <div class="card-header bg-dark text-white">
+            <div class="d-flex justify-content-between">
+                <h3>Department Table</h3>
+            <button class="btn btn-sm btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#departmentModal"
+                    >
+                        <i class="fa fa-sm fa-plus"></i>&nbsp;Add New
+            </button>
+            </div>
+            </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered" style="width:100%" id="table_id">
             <thead class="table-dark">
             <tr>
                 <td >ID</td>
@@ -28,7 +35,7 @@ and open the template in the editor.
             </tr>
             </thead>            
             <tbody>
-                <tr th:each="department : ${departments}">
+<!--                <tr th:each="department : ${departments}">
                     <td th:text="${department.id}"></td>
                     <td th:text="${department.name}"></td>
                     <td>
@@ -39,9 +46,48 @@ and open the template in the editor.
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
-                </tr>
+                </tr>-->
             </tbody>
         </table>
+                </div>  
+            </div>
+        
         </div>
+        </div>
+        
+<div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Department Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        <!--ini isi sendiri-->
+        <form action="#" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label class="form-label">Department Name</label>
+                <input type="text" class="form-control input-data" id="name_dept" required>
+                <div class="invalid-feedback">
+                    Please input department name
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+        
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/department.js"></script>
+    <script src="/js/alert.js"></script>
     </body>
 </html>

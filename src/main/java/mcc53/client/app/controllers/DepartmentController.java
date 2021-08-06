@@ -5,6 +5,7 @@
  */
 package mcc53.client.app.controllers;
 
+import java.util.List;
 import mcc53.client.app.models.Department;
 import mcc53.client.app.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -35,6 +37,16 @@ public class DepartmentController {
     public String getAllDepartment(Model model) {
         model.addAttribute("departments", departmentService.getAllDepartment());
         return ("department/view");
+    }
+    
+    @GetMapping("/get-all")
+    public @ResponseBody List<Department> getAll() {
+        return departmentService.getAllDepartment();
+    }
+    
+    @GetMapping("{id}")
+    public @ResponseBody Department getById(@PathVariable("id") Integer id){
+        return departmentService.getDepartmentById(id);
     }
     
     @GetMapping("/add")
